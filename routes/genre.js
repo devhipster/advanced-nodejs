@@ -34,10 +34,15 @@ genreRouter.post('',async (req,res)=>{
 })
 
 genreRouter.put(':id',async (req,res)=>{
-    const outcome = genre.updateOne({_id:req.params.id})
-    outcome.name = req.body.name;
-    outcome.category = req.body.category;
-    outcome.age = req.body.age;
+    const outcome = await genre.findByIdAndUpdate(
+        req.params.id,
+        {name:req.body.name},
+        {new:true});
+    
+    if(!outome){
+        res.status(403).json({error:'failed'})
+    }
+    res.json(outcome)
 })
 
 genreRouter.delete(':id',async (req,res)=>{
