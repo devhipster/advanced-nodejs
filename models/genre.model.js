@@ -17,6 +17,7 @@ mongoose.connect(`${config.get('app.dbURL')}`)
 
 module.exports ={ 
     genre:  //magic happens here
-   genreModel = mongoose.model('Gener',genreSchema)
+   genreModel = mongoose.model('Genere',genreSchema),
+   genreSchema: genreSchema
 }
-module.exports = genreSchema;
+// module.exports = genreSchema;
