@@ -47,7 +47,7 @@ genreRouter.put(':id',async (req,res)=>{
 
 genreRouter.delete(':id',async (req,res)=>{
     const remSet = await genre.findOneAndDelete({_id:id});
-    res.send(remSet);
+    res.json(remSet)
 })
 
 async function listGenres(){
