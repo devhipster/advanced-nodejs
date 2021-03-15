@@ -1,0 +1,6 @@
+{
+    "app":{
+        "dbKey":"mongodb7633k",
+        "dbURL":"mongodb://localhost/vidly"
+    }
+}
