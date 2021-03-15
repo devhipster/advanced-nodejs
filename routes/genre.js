@@ -12,9 +12,11 @@ res.send(outcome);
 })
 
 genreRouter.get(':id',async (req,res)=>{
-   const outcome = await genre.findOne({_id:id});
-    if(!outcome) return res.status(403).res('theres not contetn to show')
-    res.send(outcome);
+   const outcome = await genre.findById(req.params.id);
+    if(!outcome) return res.status(403).res.json({
+        message: "failed"
+    })
+    res.json(outcome)
 })
 
 genreRouter.post('',async (req,res)=>{
