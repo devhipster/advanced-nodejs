@@ -19,12 +19,18 @@ genreRouter.get(':id',async (req,res)=>{
 
 genreRouter.post('',async (req,res)=>{
     const newSet = new genre({
-        name:req.body.name,
-        category:req.body.category,
-        age:req.body.age
+        ...req.body
     })
-    await newSet.save();
-    res.send(newSet);
+    await newSet.save()
+    .then(result=>{
+        res.json(result)
+    })
+    .catch(err=>{
+        res.json(error)
+    })
+    ;
+    // res.send(newSet);
+    res.json(newSet)
 })
 
 genreRouter.put(':id',async (req,res)=>{
