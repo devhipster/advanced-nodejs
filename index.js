@@ -11,7 +11,7 @@ const { genreRoute } = require('./routes/genre');
 const customerRoute =  require('./routes/customer');
 const port = process.env.PORT || 5500;
 
-app.use('/api/vidly',genreRoute);
+app.use('/api/genres',genreRoute);
 app.use('/api/customer',customerRoute);
 app.get('',async(req,res)=>{
     httpResponse('Redirecting to vidly api')

@@ -11,9 +11,9 @@ if (!outcome)return response.status(403).send('Theres not content to show');
 res.send(outcome);
 })
 
-genreRouter.get(':id',async (req,res)=>{
+genreRouter.get('/:id',async (req,res)=>{
    const outcome = await genre.findById(req.params.id);
-    if(!outcome) return res.status(403).res.json({
+    if(!outcome) return res.status(403).json({
         message: "failed"
     })
     res.json(outcome)
@@ -24,13 +24,8 @@ genreRouter.post('',async (req,res)=>{
         ...req.body
     })
     await newSet.save()
-    .then(result=>{
-        res.json(result)
-    })
-    .catch(err=>{
-        res.json(error)
-    })
-    ;
+   
+    console.log(req.body)
     // res.send(newSet);
     res.json(newSet)
 })
