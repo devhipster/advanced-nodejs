@@ -23,6 +23,7 @@ function validateUser(user){
         name: Joi.string().min(5).max(50).required()
     }
 
-    return Joi.validate(user,schema)
+    return Joi.validate(user,schema); 
+
 }
-module.exports = User;
+module.exports = {User,validateUser};

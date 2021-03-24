@@ -10,7 +10,9 @@ const path = require('path');
 const { genreRoute } = require('./routes/genre');
 const customerRoute =  require('./routes/customer');
 const port = process.env.PORT || 5500;
+const userRoute = require('./routes/users');
 
+app.use('/api/users',userRoute);
 app.use('/api/genres',genreRoute);
 app.use('/api/customer',customerRoute);
 app.get('',async(req,res)=>{
