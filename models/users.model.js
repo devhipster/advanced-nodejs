@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { FormatAlignJustifyOutlined } = require('@material-ui/icons');
 var Joi = require('joi');
 const mongoose = require('mongoose')
@@ -14,6 +16,10 @@ const userSchema = new mongoose.Schema({
         required:true
     }
 });
+userSchema.methods.genAthToken = function(){
+    const token = jwt.sign({_id:this._id}, config.get('jwtPrivateKey'))
+    return token;
+}
 const User = mongoose.model('User', userSchema);
 
 function validateUser(user){
