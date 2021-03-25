@@ -3,7 +3,7 @@ const genreRouter = express.Router();
 const { genre } = require('../models/genre.model');
 const Joi = require('joi');
 const {getAll} = require('../controllers/genre.controller');
-
+const auth  = require('../middleware/auth');
 
 genreRouter.get('',async (req,res)=>{
     const outcome  = await genre.find({});
@@ -19,7 +19,8 @@ genreRouter.get('/:id',async (req,res)=>{
     res.json(outcome)
 })
 
-genreRouter.post('',async (req,res)=>{
+genreRouter.post('',auth,async (req,res)=>{
+    const token = req.head('x-auth-token');
     const newSet = new genre({
         ...req.body
     })
@@ -30,7 +31,7 @@ genreRouter.post('',async (req,res)=>{
     res.json(newSet)
 })
 
-genreRouter.put(':id',async (req,res)=>{
+genreRouter.put(':id', async (req,res)=>{
     const outcome = await genre.findByIdAndUpdate(
         req.params.id,
         {name:req.body.name},
