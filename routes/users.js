@@ -6,10 +6,17 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post('',(req,res)=>{
+router.post('',async (req,res)=>{
 
+    const {error } = validate(...req.body);
+    if ( error ) return res.status.send(400).send(error.details[0].message);
 
-})
+    User.findOne({email:req.body.email});
+    if(user) return res.status(400).send('User already registered');
+    const newUser = new User(...req.body);
+    await newUser.save();
+
+    res.send(newUser);
 
 
 module.exports = router;
